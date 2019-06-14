@@ -5,83 +5,71 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Project 1</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/css/style.css"> 
     <link href="https://fonts.googleapis.com/css?family=Archivo+Black&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
 </head>
 <body>
-        <div class="container">
-                <div class="notification is-dark">
-                        <nav class="level">
-                                <div class="level-item has-text-centered">
-                              <strong id="nav-header">Kat, Robert, and Aaron's Awesome App</strong>
-                                </div>
-                        </nav>
-                        <nav class="level-item has-text-centered">
-                            <a class="button is-danger is-rounded" id="header-btn-1">Topic 1</a>
-                            <a class="button is-danger is-rounded" id="header-btn-2">Topic 2</a>
-                            <a class="button is-danger is-rounded" id="header-btn-3">Topic 3</a>
-                        </nav>
-                </div>
-        </div>
-        <br><br>
-       <div class="grid-container-1">
-            <div class="control">
-                    <div class="card">
-                            <header class="card-header">
-                              <p class="card-header-title">
-                                Wiki Post
-                              </p>
-                              <a href="#" class="card-header-icon" aria-label="more options">
-                                <span class="icon">
-                                  <i class="fas fa-angle-down" aria-hidden="true"></i>
-                                </span>
-                              </a>
-                            </header>
-                            <div class="card-content">
-                              <div class="content">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.
-                                <a href="#">@bulmaio</a>. <a href="#">#css</a> <a href="#">#responsive</a>
-                                <br>
-                                <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
-                              </div>
+    <!-- Nav Bar -->
+        <nav class="navbar navbar-dark bg-dark" >
+                <a class="navbar-brand" id="nav-bar">ARK Translation</a>
+                <form class="form-inline">
+                  <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                  <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
+                </form>
+              </nav>
+              <br><br>
+     <!-- Wiki post will go here -->
+     <div class="container" id="main-container">
+            <div class="row justify-content-md-center">
+              <div class="col-sm-9">
+                    <div class="btn-group" role="group" aria-label="Button group with nested dropdown" id="btn-group">
+                            <button type="button" class="btn btn-dark" id="btnEng">English</button>
+                            <button type="button" class="btn btn-dark" id="btnGrm">German</button>
+                            <button type="button" class="btn btn-dark" id="btnSpn">Spanish</button>
+                        
+                            <div class="btn-group" role="group">
+                            <button id="btnGroupDrop1" type="button" class="btn btn-dark dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Dropdown
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                <a class="dropdown-item" href="#">French</a>
+                                <a class="dropdown-item" href="#">Italian</a>
+                                <a class="dropdown-item" href="#">Polish</a>
+                                <a class="dropdown-item" href="#">Chinese</a>
+                                <a class="dropdown-item" href="#">Russian</a>
                             </div>
-                            
-                          </div>
-       </div>
-
-       <div class="grid-container-2">
-            <div class="card" id="Box1">
-                    <header class="card-header">
-                      <p class="card-header-title">
-                        Translation
-                      </p>
-                      <form action="/action_page.php">
-                        <select name="Language">
-                          <option value="English">English</option>
-                          <option value="French">French</option>
-                          <option value="German">German</option>
-                          <option value="Spanish">Spanish</option>
-                        </select>
-                        <br><br>
-                        <!-- <input type="submit"> -->
-                      </form>
-                    </header>
-                    <div class="card-content">
-                      <div class="content">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.
-                        <a href="#">@bulmaio</a>. <a href="#">#css</a> <a href="#">#responsive</a>
-                        <br>
-                        <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
-                      </div>
-                    </div>
+                            </div>
+                        </div>
+                <div class="row">
+                  <div class="col-8 col-sm-6">
+                        <div class="card">
+                                <h5 class="card-header">Wiki Text</h5>
+                                <div class="card-body">
+                                  <h5 class="card-title">Special title treatment</h5>
+                                </div>
+                              </div>
                   </div>
-       </div>
+                  <div class="col-8 col-sm-6">
+                        <div class="card">
+                            <h5 class="card-header">Translate!</h5>
+                                <div class="card-body">
+                                <h5 class="card-title">Translation Goes Here</h5>
+                                </div>
+                        </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        
     
-       
- <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
 </html>
 
