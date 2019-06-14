@@ -1,0 +1,36 @@
+#header-btn-1{
+    margin-right: 30px;
+}
+
+#header-btn-2{
+    margin-right: 30px;
+}
+
+#header-btn-3{
+    margin-right: 30px;
+}
+
+#nav-header{
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 30px;
+}
+
+.grid-container-1 {
+    display: grid;
+    grid-column-gap: 50px;
+    grid-template-columns: auto auto;
+    padding: 10px;
+    margin-left: 53px;
+    box-sizing: border-box;
+    /* display: inline-grid; */
+}
+.grid-container-2 {
+    display: grid;
+    grid-column-gap: 50px;
+    grid-template-columns: auto auto;
+    
+    /* display: inline-grid; */
+}
+
+
+
