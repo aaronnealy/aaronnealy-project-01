@@ -1,0 +1,22 @@
+#nav-bar{
+    color: white;
+    font-size: 45px;
+    
+
+}
+
+#main-container{
+    background-color: #343a40;
+    height: 500px;
+}
+
+#btn-group{
+    /* position: relative;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    vertical-align: middle; */
+    margin-left: 443px;
+}
+
+
+
