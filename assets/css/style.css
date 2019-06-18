@@ -56,8 +56,8 @@
     color: #F4F4F8;
 }
 
-@media screen and (max-width: 768px){
-    #nav-bar-color{
+@media only screen and (max-width: 768px){
+    .nav-bar{
         position: relative; 
         /* padding-left: 30%; */
     }
@@ -66,7 +66,7 @@
         width: 50%;
       }
 
-    #main-container{
+    .wiki-container{
         margin: auto;
         padding-top: 2px;
     }
@@ -90,6 +90,22 @@
     .trans-text{
         font-size: 16px;
     }
+};
+
+@media only screen and (max-width: 640px){
+   .nav-bar{
+       position: static;
+       width: 100% ;
+       
+   } 
+
+   .wiki-container{
+       margin: 0;
+   }
+
+   .btnGroup{
+       margin-left: 0;
+   }
 }
 
 
