@@ -1,21 +1,95 @@
-#nav-bar{
-    color: white;
+#logo{
+    color: #F3EFF5;
     font-size: 45px;
+    background-color: #0d0a0b;
     
 
 }
 
+#nav-bar-color{
+    background-color:#0d0a0b;;
+}
+
 #main-container{
-    background-color: #343a40;
+    /* position: relative; */
+    background-color: #72b01d;
     height: 500px;
 }
 
-#btn-group{
+.wiki-text{
+    /* position: absolute; */
+    /* height: 80%; */
+    height: 300px;
+    overflow-y: scroll;
+}
+.btnGroup{
     /* position: relative;
     display: -ms-inline-flexbox;
     display: inline-flex;
     vertical-align: middle; */
-    margin-left: 443px;
+    margin-left: 720px;
+    background-color: #72b01d;
+}
+
+#btnEng{
+    color: #F4F4F8;
+    border-right: solid #F3EFF5
+}
+
+#btnSpn{
+    color: #F4F4F8;
+    border-left: solid #F3EFF5
+}
+
+#btnGrm{
+    color: #F4F4F8;
+}
+
+#search-bar{
+    border: solid;
+    border-color: #72b01d;
+    color: #72b01d;
+}
+
+.header{
+    background-color:#3F7020 ;
+    color: #F4F4F8;
+}
+
+@media screen and (max-width: 768px){
+    #nav-bar-color{
+        position: relative; 
+        /* padding-left: 30%; */
+    }
+
+    #logo{
+        width: 50%;
+      }
+
+    #main-container{
+        margin: auto;
+        padding-top: 2px;
+    }
+
+    .col {
+        width: 100%;
+    }
+
+    .btnGroup{
+        margin-left: 58%;
+    }
+
+    .card-wrapper{
+        margin: auto;
+    }
+
+    .wiki-text{
+        font-size: 16px;
+    }
+
+    .trans-text{
+        font-size: 16px;
+    }
 }
 
 
