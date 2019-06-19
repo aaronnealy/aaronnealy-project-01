@@ -12,16 +12,31 @@
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
     
+    <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-database.js"></script>
+
+    <!-- Add Firebase products that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-firestore.js"></script>
   </head>
   <body>
     <!-- Nav Bar -->
     <nav class="navbar .nav-bar" id="nav-bar-color">
         <a class="navbar-brand .nav-brand" id="logo">ARK Translation</a>
+        <!-- saved buttons -->
+        <button type="button" class="btn nav-button" id="saved-words-btn">
+          Saved Words
+        </button>
+     <!-- User Log-in -->
     <!-- Button trigger modal -->
-<button type="button" class="btn nav-button" data-toggle="modal" data-target="#exampleModalCenter">
+<button type="button" class="btn nav-button" data-toggle="modal" data-target="#exampleModalCenter" id="display-login-btn">
     Log-in
   </button>
-  <div class="modal fade " id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <button type="button" class="btn nav-button imp-btn" id="signout-btn">
+      Sign-out
+    </button>
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -34,19 +49,19 @@
         <div class="modal-body">
             <form>
                 <div class="form-group">
-                  <label for="exampleInputEmail1">User Name</label>
-                  <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter username">
+                  <label for="input-email">User Name</label>
+                  <input type="email" class="form-control" id="input-email" aria-describedby="emailHelp" placeholder="Enter username">
                   <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                 </div>
                 <div class="form-group">
-                  <label for="exampleInputPassword1">Password</label>
-                  <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                  <label for="input-password">Password</label>
+                  <input type="password" class="form-control" id="input-password" placeholder="Password">
                 </div>
-                <div class="form-group form-check">
-                  <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                  <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                </div>
-                <button type="submit" class="btn btn-success">Submit</button>
+                <!-- <div class="form-group form-check"> -->
+                  <!-- <input type="checkbox" class="form-check-input" id="exampleCheck1"> -->
+                  <!-- <label class="form-check-label" for="exampleCheck1">Check me out</label> -->
+                <!-- </div> -->
+                <button type="submit" class="btn btn-success imp-btn" id="login-btn" data-dismiss="modal">Submit</button>
               </form>
         </div>
         <div class="modal-footer">
@@ -56,6 +71,7 @@
     </div>
   </div>
   
+  <!-- Create a new account -->
   <button type="button" class="btn nav-button" data-toggle="modal" data-target="#exampleModal">
       Create An Account
     </button>
@@ -73,35 +89,68 @@
           <!-- Create Modal -->
           <div class="modal-body">
               <form class="needs-validation" novalidate>
-                  <div class="form-row">
-                    <div class="col-md-4 mb-3">
-                      <label for="validationCustom01">First name</label>
-                      <input type="text" class="form-control" id="validationCustom01" placeholder="First name" value="Mark" required>
+                  <div class="form-row mb-3">
+                    <div class="col-md-5">
+                      <label for="first-name"></label>
+                      <input type="text" class="form-control" id="first-name" placeholder="First name" value="" required>
                       <div class="valid-feedback">
                         Looks good!
                       </div>
                     </div>
-                    <div class="col-md-4 mb-3">
-                      <label for="validationCustom02">Last name</label>
-                      <input type="text" class="form-control" id="validationCustom02" placeholder="Last name" value="Otto" required>
+                    <div class="col-md-5">
+                      <label for="last-name"></label>
+                      <input type="text" class="form-control" id="last-name" placeholder="Last name" value="" required>
                       <div class="valid-feedback">
                         Looks good!
                       </div>
                     </div>
-                    <div class="col-md-4 mb-3">
-                      <label for="validationCustomUsername">Username</label>
+                    <!-- <div class="col-md-4 mb-3">
+                      <label for="validationCustomUsername"></label>
                       <div class="input-group">
                         <div class="input-group-prepend">
                           <span class="input-group-text" id="inputGroupPrepend">@</span>
                         </div>
-                        <input type="text" class="form-control" id="validationCustomUsername" placeholder="Username" aria-describedby="inputGroupPrepend" required>
+                        <input type="email" class="form-control" id="validationCustomUsername" placeholder="Email" aria-describedby="inputGroupPrepend" required>
                         <div class="invalid-feedback">
-                          Please choose a username.
+                          Please enter a valid email.
                         </div>
+                        <small id="emailHelp" class="form-text text-muted">This will be your username.</small>
                       </div>
-                    </div>
+                    </div> -->
                   </div>
-                  <div class="form-row">
+                  <!-- <div class="form-row"> -->
+                    <div class="form-row mb-3">
+                      <div class="col-md-5">
+                          <label for="setup-email"></label>
+                          <div class="input-group">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text" id="inputGroupPrepend">@</span>
+                            </div>
+                            <input type="email" class="form-control" id="setup-email" placeholder="Email" aria-describedby="inputGroupPrepend" required>
+                            <small id="emailHelpNew" class="form-text text-muted">This will be your username.</small>
+    
+                            <div class="invalid-feedback">
+                              Please enter a valid email.
+                            </div>
+                          </div>
+                      </div>
+
+                      <div class="col-md-5">
+                          <label for="setup-password"></label>
+                          <div class="input-group">
+                              <!-- <div class="input-group-prepend">
+                                <span class="input-group-text" id="inputGroupPrepend">@</span>
+                              </div> -->
+                              <input type="password" class="form-control" id="setup-password" placeholder="Password">      
+                              <div class="invalid-feedback">
+                                Please enter a valid password.
+                              </div>
+                            </div>
+                      </div>
+                      
+                    </div>
+                  <!-- </div> -->
+                  <!-- <div class="form-row">
                     <div class="col-md-6 mb-3">
                       <label for="validationCustom03">City</label>
                       <input type="text" class="form-control" id="validationCustom03" placeholder="City" required>
@@ -123,7 +172,7 @@
                         Please provide a valid zip.
                       </div>
                     </div>
-                  </div>
+                  </div> -->
                   <div class="form-group">
                     <div class="form-check">
                       <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
@@ -135,12 +184,12 @@
                       </div>
                     </div>
                   </div>
-                  <button class="btn btn-primary" type="submit">Submit form</button>
+                  <button class="btn btn-primary imp-btn" type="submit" id="new-user-btn" data-dismiss="modal">Submit form</button>
                 </form>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
+            <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
           </div>
         </div>
       </div>
@@ -158,9 +207,13 @@
     </div>
       </nav>
     <br /><br />
+
     <!-- Wiki post will go here -->
+    <p class="text-center m-0 p-0" id="welcome-tag">Welcome Guest!</p>
+
     <div class="container" id="main-container">
       <div class="row justify-content-md-center">
+
         <div class="col-sm-12">
           <div class="col-8 col-md-12">
           <div
@@ -214,10 +267,17 @@
     
               </div>
               <div class="card card-wrapper">
-                <h5 class="card-header header" id="trans-header">Translate!</h5>
+                <h5 class="card-header header" id="trans-header">Definition</h5>
                 <div class="card-body">
                   <p class="card-title trans-text">Translation Goes Here</p>
                 </div>
+
+
+
+  <script src="./assets/javascript/onclick.js"></script>
+  <script src="./assets/javascript/definition.js"></script>
+  <script src="./assets/javascript/login.js"></script>
+  <!-- <script
               </div>
             </div>
           </div>

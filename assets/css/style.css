@@ -15,6 +15,9 @@
     display: inline-block;
 }
 
+#signout-btn{
+    display:none;
+}
 
 #main-container{
     background-color: #72b01d;
