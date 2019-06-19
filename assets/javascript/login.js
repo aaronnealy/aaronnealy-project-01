@@ -44,7 +44,7 @@ $(document).ready(function() {
     // alert($("#inputEmail").val());
     // alert($("#inputPassword").val());
     // alert("clicked");
-    // new user
+    /********************************************** NEW USER ***************************************************/
     if (this.id === "new-user-btn") {
       // alert("new user btn");
 
@@ -65,15 +65,16 @@ $(document).ready(function() {
       firebase
         .auth()
         .createUserWithEmailAndPassword(email, password)
-        .then(
-          function(user) {
-            var user = firebase.auth().currentUser;
+        .then( function(user) {
+            // var user = firebase.auth().currentUser;
             // alert(JSON.stringify(user));
+            alert("user created");
             // Optional
 
             // if(user)
             // {
-              
+              $("#display-login-btn").css("display", "none");
+              $("#signout-btn").css("display", "inline");
             // }
             firebase
               .database()
@@ -84,11 +85,14 @@ $(document).ready(function() {
                 //some more user data
               });
 
-
-            firebase.database().ref("users/"+user.uid).on("value", function(e){
-              console.log(user.uid.firstName);
-              console.log(user.uid.lastName);
-            })
+              console.log(user);
+              
+              console.log(firebase.auth().currentUser.email);
+              firebase.database().ref().on("value", function(snapshot){
+                console.log(user.uid.firstName);
+                console.log(user.uid.lastName);
+                $("#welcome-tag").text("Welcome, "+snapshot.val().firstName);
+              })
 
 
           },
@@ -112,45 +116,11 @@ $(document).ready(function() {
           // [END_EXCLUDE]
         });
     }
-    // login
+    /********************************************** LOGIN ***************************************************/
     else if (this.id === "login-btn") {
-      // alert("login btn");
-      // firebase
-      //   .auth()
-      //   .signInWithEmailAndPassword(email, password)
-      //   .then(function() {
-      //     user = firebase.auth().currentUser;
-
-      //     if (user) {
-      //       // User is signed in.
-      //       // function writeUserData(words) {
-      //       //   firebase
-      //       //     .database()
-      //       //     .ref("users/" + user)
-      //       //     .set({
-      //       //       words: words
-      //       //       //some more user data
-      //       //     });
-      //       // }
-      //       alert(user + " signed in");
-      //     } else {
-      //       // No user is signed in.
-      //     }
-      //   })
-      //   .catch(function(error) {
-      //     // Handle Errors here.
-      //     var errorCode = error.code;
-      //     var errorMessage = error.message;
-      //     // alert("user doesn't exist/password wrong");
-      //     // ...
-      //   });
       var user = firebase.auth().currentUser;
-      if (user) {
-        $("#display-login-btn").css("display", "none");
-        $("#signout-btn").css("display", "inline");
-        console.log(firebase.auth().currentUser.email);
-        $("#welcome-tag").text("Welcome, "+user.uid.firstName);
-      }
+      console.log("Current User: "+ JSON.stringify(user));
+
       email = $("#input-email").val();
       password = $("#input-password").val();
 
@@ -170,9 +140,15 @@ $(document).ready(function() {
         .then(function() {
           user = firebase.auth().currentUser;
           // alert("successful sign in");
-          if(user){
+          if (user && !(user.isAnonymous)) {
             $("#display-login-btn").css("display", "none");
             $("#signout-btn").css("display", "inline");
+            console.log(firebase.auth().currentUser.email);
+            firebase.database().ref("users/"+user.uid).on("value", function(snapshot){
+              console.log(user.uid.firstName);
+              console.log(user.uid.lastName);
+              $("#welcome-tag").text("Welcome, "+snapshot.val().firstName);
+            })
           }
 
         })
@@ -192,14 +168,23 @@ $(document).ready(function() {
         });
       // [END authwithemail]
     } else if (this.id === "signout-btn") {
-      if (firebase.auth().currentUser) {
+      // alert("clicked");
+      // if (user) {
+        firebase.auth().signOut().then(function() {
+          $("#signout-btn").css("display", "none");
+          $("#display-login-btn").css("display", "inline");
+          $("#welcome-tag").text("You have signed out successfully.");
+          // Sign-out successful.
+        }).catch(function(error) {
+          // An error happened.
+        });
+      // }
         // alert("clicked");
         // [START signout]
-        firebase.auth().signOut();
+        // firebase.auth().signOut();
         // [END signout]
-        $("#signout-btn").css("display", "none");
-        $("#display-login-btn").css("display", "inline");
-      }
+
+      // }
     }
   });
 });
