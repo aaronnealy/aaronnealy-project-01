@@ -53,11 +53,11 @@ $(document).ready(function() {
       console.log(email + " email");
       console.log(password + " password");
 
-      if (email.length < 4) {
+      if (email.length < 6) {
         alert("Please enter an email address.");
         return;
       }
-      if (password.length < 4) {
+      if (password.length < 6) {
         alert("Please enter a password.");
         return;
       }
@@ -65,10 +65,11 @@ $(document).ready(function() {
       firebase
         .auth()
         .createUserWithEmailAndPassword(email, password)
-        .then( function(user) {
-            // var user = firebase.auth().currentUser;
+        .then( function() {
+            var user = firebase.auth().currentUser;
             // alert(JSON.stringify(user));
-            alert("user created");
+            // var user = 
+            // alert("user created");
             // Optional
 
             // if(user)
@@ -81,18 +82,22 @@ $(document).ready(function() {
               .ref("users/" + user.uid)
               .set({
                 firstName: $("#first-name").val(),
-                lastName: $("#last-name").val()
+                lastName: $("#last-name").val(),
+                words : "cool"
                 //some more user data
               });
 
               console.log(user);
               
               console.log(firebase.auth().currentUser.email);
-              firebase.database().ref().on("value", function(snapshot){
-                console.log(user.uid.firstName);
-                console.log(user.uid.lastName);
+              firebase.database().ref("users/" + user.uid).on("value", function(snapshot){
+                // console.log(user.uid.firstName);
+                // console.log(user.uid.lastName);
                 $("#welcome-tag").text("Welcome, "+snapshot.val().firstName);
               })
+              firebase.auth().onAuthStateChanged( user => {
+                if (user) { this.userId = user.uid }
+              });
 
 
           },
@@ -145,8 +150,8 @@ $(document).ready(function() {
             $("#signout-btn").css("display", "inline");
             console.log(firebase.auth().currentUser.email);
             firebase.database().ref("users/"+user.uid).on("value", function(snapshot){
-              console.log(user.uid.firstName);
-              console.log(user.uid.lastName);
+              // console.log(user.uid.firstName);
+              // console.log(user.uid.lastName);
               $("#welcome-tag").text("Welcome, "+snapshot.val().firstName);
             })
           }
@@ -185,6 +190,20 @@ $(document).ready(function() {
         // [END signout]
 
       // }
+    }
+    else if(this.id === "search-bar"){
+      $.ajax({
+        url: 'https://quotesondesign.com/wp-json/posts?filter[orderby]=rand&filter[posts_per_page]=1',
+        // crossDomain: true,
+    }).then(function (response) {
+        console.log(response);
+        // console.log("daves dumb guess???      " + response.content)
+        // console.log("1 : " + response.Array[0].content);
+        // console.log('2: ' + response.data[0].content);
+        console.log('paul pilfers poodles playfully:   ' + response[0].content);
+
+        $("#wiki-view").html(response[0].content);
+    });
     }
   });
 });
