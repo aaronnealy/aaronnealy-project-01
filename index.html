@@ -13,17 +13,29 @@
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
     
+    <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-database.js"></script>
+
+    <!-- Add Firebase products that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-firestore.js"></script>
   </head>
   <body>
     <!-- Nav Bar -->
     <nav class="navbar .nav-bar" id="nav-bar-color">
         <a class="navbar-brand .nav-brand" id="logo">ARK Translation</a>
+        <!-- saved buttons -->
+        <button type="button" class="btn nav-button" id="saved-words-btn">
+          Saved Words
+        </button>
      <!-- User Log-in -->
     <!-- Button trigger modal -->
-<button type="button" class="btn nav-button" data-toggle="modal" data-target="#exampleModalCenter">
+<button type="button" class="btn nav-button" data-toggle="modal" data-target="#exampleModalCenter" id="display-login-btn">
     Log-in
   </button>
-  
+  <button type="button" class="btn nav-button" id="signout-btn">
+      Sign-out
+    </button>
   <!-- Modal -->
   <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -38,19 +50,19 @@
         <div class="modal-body">
             <form>
                 <div class="form-group">
-                  <label for="exampleInputEmail1">User Name</label>
-                  <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter username">
+                  <label for="input-email">User Name</label>
+                  <input type="email" class="form-control" id="input-email" aria-describedby="emailHelp" placeholder="Enter username">
                   <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                 </div>
                 <div class="form-group">
-                  <label for="exampleInputPassword1">Password</label>
-                  <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                  <label for="input-password">Password</label>
+                  <input type="password" class="form-control" id="input-password" placeholder="Password">
                 </div>
-                <div class="form-group form-check">
-                  <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                  <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                </div>
-                <button type="submit" class="btn btn-success">Submit</button>
+                <!-- <div class="form-group form-check"> -->
+                  <!-- <input type="checkbox" class="form-check-input" id="exampleCheck1"> -->
+                  <!-- <label class="form-check-label" for="exampleCheck1">Check me out</label> -->
+                <!-- </div> -->
+                <button type="submit" class="btn btn-success imp-btn" id="login-btn" data-dismiss="modal">Submit</button>
               </form>
         </div>
         <div class="modal-footer">
@@ -60,6 +72,7 @@
     </div>
   </div>
   
+  <!-- Create a new account -->
   <button type="button" class="btn nav-button" data-toggle="modal" data-target="#exampleModal">
       Create An Account
     </button>
@@ -76,35 +89,68 @@
           </div>
           <div class="modal-body">
               <form class="needs-validation" novalidate>
-                  <div class="form-row">
-                    <div class="col-md-4 mb-3">
-                      <label for="validationCustom01">First name</label>
-                      <input type="text" class="form-control" id="validationCustom01" placeholder="First name" value="Mark" required>
+                  <div class="form-row mb-3">
+                    <div class="col-md-5">
+                      <label for="first-name"></label>
+                      <input type="text" class="form-control" id="first-name" placeholder="First name" value="" required>
                       <div class="valid-feedback">
                         Looks good!
                       </div>
                     </div>
-                    <div class="col-md-4 mb-3">
-                      <label for="validationCustom02">Last name</label>
-                      <input type="text" class="form-control" id="validationCustom02" placeholder="Last name" value="Otto" required>
+                    <div class="col-md-5">
+                      <label for="last-name"></label>
+                      <input type="text" class="form-control" id="last-name" placeholder="Last name" value="" required>
                       <div class="valid-feedback">
                         Looks good!
                       </div>
                     </div>
-                    <div class="col-md-4 mb-3">
-                      <label for="validationCustomUsername">Username</label>
+                    <!-- <div class="col-md-4 mb-3">
+                      <label for="validationCustomUsername"></label>
                       <div class="input-group">
                         <div class="input-group-prepend">
                           <span class="input-group-text" id="inputGroupPrepend">@</span>
                         </div>
-                        <input type="text" class="form-control" id="validationCustomUsername" placeholder="Username" aria-describedby="inputGroupPrepend" required>
+                        <input type="email" class="form-control" id="validationCustomUsername" placeholder="Email" aria-describedby="inputGroupPrepend" required>
                         <div class="invalid-feedback">
-                          Please choose a username.
+                          Please enter a valid email.
                         </div>
+                        <small id="emailHelp" class="form-text text-muted">This will be your username.</small>
                       </div>
-                    </div>
+                    </div> -->
                   </div>
-                  <div class="form-row">
+                  <!-- <div class="form-row"> -->
+                    <div class="form-row mb-3">
+                      <div class="col-md-5">
+                          <label for="setup-email"></label>
+                          <div class="input-group">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text" id="inputGroupPrepend">@</span>
+                            </div>
+                            <input type="email" class="form-control" id="setup-email" placeholder="Email" aria-describedby="inputGroupPrepend" required>
+                            <small id="emailHelpNew" class="form-text text-muted">This will be your username.</small>
+    
+                            <div class="invalid-feedback">
+                              Please enter a valid email.
+                            </div>
+                          </div>
+                      </div>
+
+                      <div class="col-md-5">
+                          <label for="setup-password"></label>
+                          <div class="input-group">
+                              <!-- <div class="input-group-prepend">
+                                <span class="input-group-text" id="inputGroupPrepend">@</span>
+                              </div> -->
+                              <input type="password" class="form-control" id="setup-password" placeholder="Password">      
+                              <div class="invalid-feedback">
+                                Please enter a valid password.
+                              </div>
+                            </div>
+                      </div>
+                      
+                    </div>
+                  <!-- </div> -->
+                  <!-- <div class="form-row">
                     <div class="col-md-6 mb-3">
                       <label for="validationCustom03">City</label>
                       <input type="text" class="form-control" id="validationCustom03" placeholder="City" required>
@@ -126,7 +172,7 @@
                         Please provide a valid zip.
                       </div>
                     </div>
-                  </div>
+                  </div> -->
                   <div class="form-group">
                     <div class="form-check">
                       <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
@@ -138,12 +184,12 @@
                       </div>
                     </div>
                   </div>
-                  <button class="btn btn-primary" type="submit">Submit form</button>
+                  <button class="btn btn-primary imp-btn" type="submit" id="new-user-btn" data-dismiss="modal">Submit form</button>
                 </form>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
+            <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
           </div>
         </div>
       </div>
@@ -161,10 +207,15 @@
     </div>
       </nav>
     <br /><br />
+
     <!-- Wiki post will go here -->
+    <p class="text-center m-0 p-0" id="welcome-tag">Welcome Guest!</p>
+
     <div class="container" id="main-container">
       <div class="row justify-content-md-center">
+
         <div class="col-sm-12">
+          
           <div
             class="btn-group btnGroup translators-lg"
             role="group"
@@ -214,125 +265,10 @@
     
               </div>
               <div class="card card-wrapper">
-                <h5 class="card-header header" id="trans-header">Translate!</h5>
+                <h5 class="card-header header" id="trans-header">Definition</h5>
                 <div class="card-body">
                   <p class="card-title trans-text">Translation Goes Here</p>
                 </div>
-
-
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <title>Project 1</title>
-  <link rel="stylesheet" type="text/css" href="assets/css/reset.css" />
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
-  <link rel="stylesheet" href="assets/css/style.css" />
-  <link href="https://fonts.googleapis.com/css?family=Archivo+Black&display=swap" rel="stylesheet" />
-  <script src="https://code.jquery.com/jquery-3.4.1.min.js"
-    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-  <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
-  <!-- Firebase References -->
-  <!-- <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-database.js"></script> -->
-  <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-database.js"></script>
-
-  <!-- Add Firebase products that you want to use -->
-  <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-auth.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-firestore.js"></script>
-
-</head>
-
-<body>
-  <!-- Nav Bar -->
-  <nav class="navbar .nav-bar" id="nav-bar-color">
-    <a class="navbar-brand .nav-brand" id="logo">ARK Translation</a>
-
-    <form class="form-inline">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
-      <button class="btn" type="submit" id="search-bar">Search</button>
-    </form>
-    <form class="form-inline">
-      <div class="form-group mr-2">
-          <label class="sr-only" for="inputEmail">Email</label>
-          <input type="email" class="form-control" id="inputEmail" placeholder="Email">
-      </div>
-      <div class="form-group mr-2">
-          <label class="sr-only" for="inputPassword">Password</label>
-          <input type="password" class="form-control" id="inputPassword" placeholder="Password">
-      </div>
-      <button type="submit" class="btn btn-light" id="login-btn">Sign in</button>
-  </form>
-    
-  </nav>
-  <br /><br />
-  <!-- Wiki post will go here -->
-  <div class="container wiki-container" id="main-container">
-    <div class="row justify-content-md-center">
-      <div class="col-sm-12">
-        <div class="btn-group btnGroup" role="group" aria-label="Button group with nested dropdown" id="btn-group">
-          <button type="button" class="btn" id="btnEng">English</button>
-          <button type="button" class="btn" id="btnGrm">German</button>
-          <button type="button" class="btn" id="btnSpn">Spanish</button>
-
-          <!-- <div class="btn-group" role="group">
-                            <button id="btnGroupDrop1" type="button" class="btn btn-dark dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Dropdown
-                            </button>
-                            <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                <a class="dropdown-item" href="#" id="btnFrn">French</a>
-                                <a class="dropdown-item" href="#" id="btnItl">Italian</a>
-                                <a class="dropdown-item" href="#" id="btnPol">Polish</a>
-                                <a class="dropdown-item" href="#" id="btnChi">Chinese</a>
-                                <a class="dropdown-item" href="#" id="btnRsn">Russian</a>
-                            </div>
-                            </div> -->
-        </div>
-        <div class="row">
-          <div class="col-8 col-sm-6">
-            <div class="card card-wrapper">
-              <h5 class="card-header header" id="wiki-header">Wiki Text</h5>
-              <div class="card-body">
-                <p class="card-title wiki-text">
-                  In a literal sense, the term modern physics, means up-to-date physics. In this sense, a significant
-                  portion of so-called classical physics is modern. However, since roughly 1890, new discoveries have
-                  caused significant paradigm shifts: the advent of quantum mechanics (QM) and of Einsteinian relativity
-                  (ER). Physics that incorporates elements of either QM or ER (or both) is said to be modern physics. It
-                  is in this latter sense that the term is generally used.
-                  Modern physics is often encountered when dealing with extreme conditions. Quantum mechanical effects
-                  tend to appear when dealing with "lows" (low temperatures, small distances), while relativistic
-                  effects tend to appear when dealing with "highs" (high velocities, large distances), the "middles"
-                  being classical behaviour. For example, when analysing the behaviour of a gas at room temperature,
-                  most phenomena will involve the (classical) Maxwell–Boltzmann distribution. However near absolute
-                  zero, the Maxwell–Boltzmann distribution fails to account for the observed behaviour of the gas, and
-                  the (modern) Fermi–Dirac or Bose–Einstein distributions have to be used instead.
-                  German physicists Albert Einstein, founder of the theory of relativity, and Max Planck, founder of
-                  quantum theory, respectively
-                  Very often, it is possible to find – or "retrieve" – the classical behaviour from the modern
-                  description by analysing the modern description at low speeds and large distances (by taking a limit,
-                  or by making an approximation). When doing so, the result is called the classical limit.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-8 col-sm-6">
-            <div class="card card-wrapper">
-              <h5 class="card-header header" id="trans-header">Translate!</h5>
-              <div class="card-body">
-                <p class="card-title trans-text">Translation Goes Here</p>
-
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-      </div>
-    </div>
 
 
 
