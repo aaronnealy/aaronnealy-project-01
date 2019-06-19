@@ -2,7 +2,6 @@
     color: #F3EFF5;
     font-size: 45px;
     background-color: #0d0a0b;
-    
 
 }
 
@@ -10,23 +9,22 @@
     background-color:#0d0a0b;;
 }
 
+.nav-button{
+    background-color: #72b01d;
+    color:#F4F4F8;
+}
+
+
 #main-container{
-    /* position: relative; */
     background-color: #72b01d;
     height: 500px;
 }
 
 .wiki-text{
-    /* position: absolute; */
-    /* height: 80%; */
     height: 300px;
     overflow-y: scroll;
 }
 .btnGroup{
-    /* position: relative;
-    display: -ms-inline-flexbox;
-    display: inline-flex;
-    vertical-align: middle; */
     margin-left: 720px;
     background-color: #72b01d;
 }
@@ -59,15 +57,25 @@
     background-color:#3F7020 ;
     color: #F4F4F8;
 }
+/* Desktop */
+@media only screen and (min-width: 992px){
+    .translators-sm{
+        display: none;
+       }
+}
 
+/* Tablets */
 @media only screen and (max-width: 768px){
     .nav-bar{
         position: relative; 
-        /* padding-left: 30%; */
     }
 
+    /* .log-in{
+        display: none;
+    } */
+
     #logo{
-        width: 50%;
+        width: 100%;
       }
 
     .wiki-container{
@@ -83,6 +91,10 @@
         margin-left: 58%;
     }
 
+    .translators-sm{
+        display: none;
+       }
+
     .card-wrapper{
         margin: auto;
     }
@@ -95,21 +107,33 @@
         font-size: 16px;
     }
 };
-
-@media only screen and (max-width: 640px){
-   .nav-bar{
+/* Mobile Phone */
+@media only screen and (max-width: 576px){
+   body{
+       background-color: #72b01d;
+   }
+   
+    .nav-bar{
        position: static;
-       width: 100% ;
        
    } 
 
-   .wiki-container{
-       margin: 0;
+   .translators-lg{
+    display: none;
    }
 
-   .btnGroup{
-       margin-left: 0;
+   /* .translators-sm{
+       display: show;
+   } */
+
+   .wiki-container{
+       margin: auto;
    }
+
+   .col {
+    width: 100%;
+}
+
 }
 
 
