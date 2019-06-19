@@ -1,18 +1,5 @@
-var firebaseConfig = {
-    apiKey: "AIzaSyBqUc9gmeD-lszKhmlnmIP_ayqrrZExBMc",
-    authDomain: "translation-project-361ae.firebaseapp.com",
-    databaseURL: "https://translation-project-361ae.firebaseio.com",
-    projectId: "translation-project-361ae",
-    storageBucket: "translation-project-361ae.appspot.com",
-    messagingSenderId: "16272234044",
-    appId: "1:16272234044:web:2ada16e7e189a1c7"
-}
 
-firebase.initializeApp(firebaseConfig);
-
-var database = firebase.database();
-
-alert("worked");
+// alert("worked"); 
 
 $(document).ready(function(){
     $('.wiki-text').each(function() {
