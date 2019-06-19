@@ -58,6 +58,10 @@
     .translators-sm{
         display: none;
        }
+
+    .btnGroup{
+        margin-left: 65%;
+    }
 }
 
 /* Tablets */
@@ -84,7 +88,7 @@
     }
 
     .btnGroup{
-        margin-left: 58%;
+        margin-left: 55%;
     }
 
     .translators-sm{
