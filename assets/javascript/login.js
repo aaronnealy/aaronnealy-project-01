@@ -202,7 +202,7 @@ $(document).ready(function() {
         // console.log('2: ' + response.data[0].content);
         console.log('paul pilfers poodles playfully:   ' + response[0].content);
 
-        $("#wiki-view").html(response[0].content);
+        $("#wiki-text").html(response[0].content);
     });
     }
   });
