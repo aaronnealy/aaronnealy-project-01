@@ -17,32 +17,7 @@ var apiKey = "91bf7c64-058e-48ed-80fc-ccfba37495fc";
 var apiKeySp = "6b3cae2a-60ad-48a2-8ad6-6a83102b5b73"
 
 $(document).ready(function() {
-  $(".wiki-text").each(function() {
-    var $this = $(this);
-    $this.html($this.text().replace(/\b(\w+)\b/g, "<span>$1</span>"));
-    // $this.addClass(".wiki-text");
-    // alert("wiki body");
-
-    // for a clicked word, get the current user and add it to the user's saved words list
-  });
-
-  $("div span").hover(
-    function() {
-      $(this).css("background-color", "#6dd8ff");
-      // alert(getTheMeaningOfTheWord($(this).html()));
-      if(language === 0)
-      {
-        getTheMeaningOfTheWord($(this).html());
-      }
-      else if(language === 2){
-        getTheMeaningOfTheWordEsp($(this).html());
-      }
-      // alert("wiki-text");
-    },
-    function() {
-      $(this).css("background-color", "");
-    }
-  );
+    getWord();
 //   $this.on("click", function(e) {
 //     // alert("clicked");
 //     saveWord($(this).html());
@@ -65,6 +40,22 @@ $("button.translators").on("click", function(){
     console.log("language "+language);
 })
 
+$("#search-bar").on("click", function(){
+
+    $.ajax({
+        url: 'https://quotesondesign.com/wp-json/posts?filter[orderby]=rand&filter[posts_per_page]=1',
+        crossDomain: true,
+    }).then(function (response) {
+        console.log(response);
+        // console.log("daves dumb guess???      " + response.content)
+        // console.log("1 : " + response.Array[0].content);
+        // console.log('2: ' + response.data[0].content);
+        console.log('paul pilfers poodles playfully:   ' + response[0].content);
+  
+        $(".wiki-text").html(response[0].content);
+        getWord();
+    });
+});
 });
 
 function getTheMeaningOfTheWord(word) {
@@ -112,7 +103,34 @@ function getTheMeaningOfTheWord(word) {
   return word + ": " + meaning;
 }
 
-
+function getWord(){
+    $(".wiki-text").each(function() {
+        var $this = $(this);
+        $this.html($this.text().replace(/\b(\w+)\b/g, "<span>$1</span>"));
+        // $this.addClass(".wiki-text");
+        // alert("wiki body");
+    
+        // for a clicked word, get the current user and add it to the user's saved words list
+      });
+    
+      $("div span").hover(
+        function() {
+          $(this).css("background-color", "#6dd8ff");
+          // alert(getTheMeaningOfTheWord($(this).html()));
+          if(language === 0)
+          {
+            getTheMeaningOfTheWord($(this).html());
+          }
+          else if(language === 2){
+            getTheMeaningOfTheWordEsp($(this).html());
+          }
+          // alert("wiki-text");
+        },
+        function() {
+          $(this).css("background-color", "");
+        }
+      );
+}
 function getTheMeaningOfTheWordEsp(word) {
     var meaning = "";
     $.ajax({
