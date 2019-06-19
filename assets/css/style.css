@@ -12,6 +12,7 @@
 .nav-button{
     background-color: #72b01d;
     color:#F4F4F8;
+    display: inline-block;
 }
 
 #signout-btn{
@@ -65,6 +66,10 @@
     .translators-sm{
         display: none;
        }
+
+    .btnGroup{
+        margin-left: 65%;
+    }
 }
 
 /* Tablets */
@@ -91,7 +96,7 @@
     }
 
     .btnGroup{
-        margin-left: 58%;
+        margin-left: 55%;
     }
 
     .translators-sm{
@@ -116,18 +121,14 @@
        background-color: #72b01d;
    }
    
-    .nav-bar{
+    /* .nav-bar{
        position: static;
        
-   } 
+   }  */
 
    .translators-lg{
     display: none;
    }
-
-   /* .translators-sm{
-       display: show;
-   } */
 
    .wiki-container{
        margin: auto;
