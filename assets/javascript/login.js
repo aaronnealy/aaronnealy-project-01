@@ -194,7 +194,7 @@ $(document).ready(function() {
     else if(this.id === "search-bar"){
       $.ajax({
         url: 'https://quotesondesign.com/wp-json/posts?filter[orderby]=rand&filter[posts_per_page]=1',
-        // crossDomain: true,
+        crossDomain: true,
     }).then(function (response) {
         console.log(response);
         // console.log("daves dumb guess???      " + response.content)
@@ -202,7 +202,7 @@ $(document).ready(function() {
         // console.log('2: ' + response.data[0].content);
         console.log('paul pilfers poodles playfully:   ' + response[0].content);
 
-        $("#wiki-text").html(response[0].content);
+        $(".wiki-text").html(response[0].content);
     });
     }
   });
