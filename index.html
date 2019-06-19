@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -45,7 +46,7 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-      <!-- Log-in Modal -->
+      <!-- Log-in Form -->
         <div class="modal-body">
             <form>
                 <div class="form-group">
@@ -76,7 +77,7 @@
       Create An Account
     </button>
     
-    <!-- Create Button-->
+    <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -86,7 +87,6 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <!-- Create Modal -->
           <div class="modal-body">
               <form class="needs-validation" novalidate>
                   <div class="form-row mb-3">
@@ -215,21 +215,19 @@
       <div class="row justify-content-md-center">
 
         <div class="col-sm-12">
-          <div class="col-8 col-md-12">
+          
           <div
             class="btn-group btnGroup translators-lg"
             role="group"
             aria-label="Button group with nested dropdown"
             id="btn-group"
           >
-            <button type="button" class="btn translators" data-lang="english" id="btnEng">English</button>
-            <button type="button" class="btn translators" data-lang="german" id="btnGrm">German</button>
-            <button type="button" class="btn translators" data-lang="spanish" id="btnSpn">Spanish</button>
+            <button type="button" class="btn translators " data-lang="english" id="btnEng">English</button>
+            <button type="button" class="btn" id="btnGrm">German</button>
+            <button type="button" class="btn" id="btnSpn">Spanish</button>
           </div>
-        </div>
-
           <div class="row">
-            <div class="col-12 col-sm-6">
+            <div class="col-8 col-sm-6">
               <div class="card card-wrapper">
                 <h5 class="card-header header" id="wiki-header">Wiki Text</h5>
                 <div class="card-body">
@@ -254,7 +252,7 @@
                 </div>
               </div>
             </div>
-            <div class="col-12 col-sm-6">
+            <div class="col-8 col-sm-6">
                 <div
                 class="btn-group btnGroup translators-sm"
                 role="group"
@@ -278,28 +276,16 @@
   <script src="./assets/javascript/definition.js"></script>
   <script src="./assets/javascript/login.js"></script>
   <!-- <script
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <script src="./assets/javascript/onclick.js"></script>
-    <script
       src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
       integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
       crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-      crossorigin="anonymous"
-    ></script>
-  </body>
+    ></script> -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+</body>
+
 </html>
