@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -217,28 +218,113 @@
                 <div class="card-body">
                   <p class="card-title trans-text">Translation Goes Here</p>
                 </div>
+
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Project 1</title>
+  <link rel="stylesheet" type="text/css" href="assets/css/reset.css" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link href="https://fonts.googleapis.com/css?family=Archivo+Black&display=swap" rel="stylesheet" />
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+  <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+  <!-- Firebase References -->
+  <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-database.js"></script>
+
+</head>
+
+<body>
+  <!-- Nav Bar -->
+  <nav class="navbar .nav-bar" id="nav-bar-color">
+    <a class="navbar-brand .nav-brand" id="logo">ARK Translation</a>
+    <form class="form-inline">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
+      <button class="btn" type="submit" id="search-bar">Search</button>
+    </form>
+  </nav>
+  <br /><br />
+  <!-- Wiki post will go here -->
+  <div class="container wiki-container" id="main-container">
+    <div class="row justify-content-md-center">
+      <div class="col-sm-12">
+        <div class="btn-group btnGroup" role="group" aria-label="Button group with nested dropdown" id="btn-group">
+          <button type="button" class="btn" id="btnEng">English</button>
+          <button type="button" class="btn" id="btnGrm">German</button>
+          <button type="button" class="btn" id="btnSpn">Spanish</button>
+
+          <!-- <div class="btn-group" role="group">
+                            <button id="btnGroupDrop1" type="button" class="btn btn-dark dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Dropdown
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                <a class="dropdown-item" href="#" id="btnFrn">French</a>
+                                <a class="dropdown-item" href="#" id="btnItl">Italian</a>
+                                <a class="dropdown-item" href="#" id="btnPol">Polish</a>
+                                <a class="dropdown-item" href="#" id="btnChi">Chinese</a>
+                                <a class="dropdown-item" href="#" id="btnRsn">Russian</a>
+                            </div>
+                            </div> -->
+        </div>
+        <div class="row">
+          <div class="col-8 col-sm-6">
+            <div class="card card-wrapper">
+              <h5 class="card-header header" id="wiki-header">Wiki Text</h5>
+              <div class="card-body">
+                <p class="card-title wiki-text">
+                  In a literal sense, the term modern physics, means up-to-date physics. In this sense, a significant
+                  portion of so-called classical physics is modern. However, since roughly 1890, new discoveries have
+                  caused significant paradigm shifts: the advent of quantum mechanics (QM) and of Einsteinian relativity
+                  (ER). Physics that incorporates elements of either QM or ER (or both) is said to be modern physics. It
+                  is in this latter sense that the term is generally used.
+                  Modern physics is often encountered when dealing with extreme conditions. Quantum mechanical effects
+                  tend to appear when dealing with "lows" (low temperatures, small distances), while relativistic
+                  effects tend to appear when dealing with "highs" (high velocities, large distances), the "middles"
+                  being classical behaviour. For example, when analysing the behaviour of a gas at room temperature,
+                  most phenomena will involve the (classical) Maxwell–Boltzmann distribution. However near absolute
+                  zero, the Maxwell–Boltzmann distribution fails to account for the observed behaviour of the gas, and
+                  the (modern) Fermi–Dirac or Bose–Einstein distributions have to be used instead.
+                  German physicists Albert Einstein, founder of the theory of relativity, and Max Planck, founder of
+                  quantum theory, respectively
+                  Very often, it is possible to find – or "retrieve" – the classical behaviour from the modern
+                  description by analysing the modern description at low speeds and large distances (by taking a limit,
+                  or by making an approximation). When doing so, the result is called the classical limit.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-8 col-sm-6">
+            <div class="card card-wrapper">
+              <h5 class="card-header header" id="trans-header">Translate!</h5>
+              <div class="card-body">
+                <p class="card-title trans-text">Translation Goes Here</p>
+
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+  </div>
 
-    <script src="./assets/javascript/onclick.js"></script>
-    <script
+  <script src="./assets/javascript/onclick.js"></script>
+  <script src="./assets/javascript/definition.js"></script>
+  <!-- <script
       src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
       integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
       crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-      crossorigin="anonymous"
-    ></script>
-  </body>
+    ></script> -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+</body>
+
 </html>

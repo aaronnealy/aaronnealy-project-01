@@ -29,6 +29,10 @@
     background-color: #72b01d;
 }
 
+#btnEng:focus,#btnGrm:focus,#btnSpn:focus{
+    background-color: #2d4709;
+}
+
 #btnEng{
     color: #F4F4F8;
     border-right: solid #F3EFF5

@@ -11,7 +11,7 @@
     // var itl = $("#btnItl")
 
     $("#btnEng").on("click", function() {
-        console.log("You Clicked English")
+        console.log("You Clicked English");
     });
 
     $("#btnGrm").on("click", function(){
