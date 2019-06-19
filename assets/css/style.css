@@ -12,6 +12,7 @@
 .nav-button{
     background-color: #72b01d;
     color:#F4F4F8;
+    display: inline-block;
 }
 
 
@@ -27,6 +28,10 @@
 .btnGroup{
     margin-left: 720px;
     background-color: #72b01d;
+}
+
+#btnEng:focus,#btnGrm:focus,#btnSpn:focus{
+    background-color: #2d4709;
 }
 
 #btnEng{
@@ -113,18 +118,14 @@
        background-color: #72b01d;
    }
    
-    .nav-bar{
+    /* .nav-bar{
        position: static;
        
-   } 
+   }  */
 
    .translators-lg{
     display: none;
    }
-
-   /* .translators-sm{
-       display: show;
-   } */
 
    .wiki-container{
        margin: auto;
