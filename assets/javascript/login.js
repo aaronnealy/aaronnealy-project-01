@@ -54,28 +54,29 @@ $(document).ready(function() {
       console.log(password + " password");
 
       if (email.length < 6) {
-        alert("Please enter an email address.");
+        // alert("Please enter an email address.");
         return;
       }
       if (password.length < 6) {
-        alert("Please enter a password.");
+        // alert("Please enter a password.");
         return;
       }
 
       firebase
         .auth()
         .createUserWithEmailAndPassword(email, password)
-        .then( function() {
+        .then(
+          function() {
             var user = firebase.auth().currentUser;
             // alert(JSON.stringify(user));
-            // var user = 
+            // var user =
             // alert("user created");
             // Optional
 
             // if(user)
             // {
-              $("#display-login-btn").css("display", "none");
-              $("#signout-btn").css("display", "inline");
+            $("#display-login-btn").css("display", "none");
+            $("#signout-btn").css("display", "inline");
             // }
             firebase
               .database()
@@ -83,23 +84,26 @@ $(document).ready(function() {
               .set({
                 firstName: $("#first-name").val(),
                 lastName: $("#last-name").val(),
-                words : "cool"
+                words: ""
                 //some more user data
               });
 
-              console.log(user);
-              
-              console.log(firebase.auth().currentUser.email);
-              firebase.database().ref("users/" + user.uid).on("value", function(snapshot){
+            console.log(user);
+
+            console.log(firebase.auth().currentUser.email);
+            firebase
+              .database()
+              .ref("users/" + user.uid)
+              .on("value", function(snapshot) {
                 // console.log(user.uid.firstName);
                 // console.log(user.uid.lastName);
-                $("#welcome-tag").text("Welcome, "+snapshot.val().firstName);
-              })
-              firebase.auth().onAuthStateChanged( user => {
-                if (user) { this.userId = user.uid }
+                $("#welcome-tag").text("Welcome, " + snapshot.val().firstName);
               });
-
-
+            firebase.auth().onAuthStateChanged(user => {
+              if (user) {
+                this.userId = user.uid;
+              }
+            });
           },
           function(error) {
             // Handle Errors here.
@@ -113,28 +117,27 @@ $(document).ready(function() {
           var errorMessage = error.message;
           // [START_EXCLUDE]
           if (errorCode == "auth/weak-password") {
-            alert("The password is too weak.");
+            // alert("The password is too weak.");
           } else {
-            alert(errorMessage);
+            // alert(errorMessage);
           }
           console.log(error);
           // [END_EXCLUDE]
         });
-    }
+    } else if (this.id === "login-btn") {
     /********************************************** LOGIN ***************************************************/
-    else if (this.id === "login-btn") {
       var user = firebase.auth().currentUser;
-      console.log("Current User: "+ JSON.stringify(user));
+      console.log("Current User: " + JSON.stringify(user));
 
       email = $("#input-email").val();
       password = $("#input-password").val();
 
-      if (email.length < 4) {
-        alert("Please enter an email address.");
+      if (email.length < 6) {
+        // alert("Please enter an email address.");
         return;
       }
-      if (password.length < 4) {
-        alert("Please enter a password.");
+      if (password.length < 6) {
+        // alert("Please enter a password.");
         return;
       }
       // Sign in with email and pass.
@@ -145,17 +148,19 @@ $(document).ready(function() {
         .then(function() {
           user = firebase.auth().currentUser;
           // alert("successful sign in");
-          if (user && !(user.isAnonymous)) {
+          if (user && !user.isAnonymous) {
             $("#display-login-btn").css("display", "none");
             $("#signout-btn").css("display", "inline");
             console.log(firebase.auth().currentUser.email);
-            firebase.database().ref("users/"+user.uid).on("value", function(snapshot){
-              // console.log(user.uid.firstName);
-              // console.log(user.uid.lastName);
-              $("#welcome-tag").text("Welcome, "+snapshot.val().firstName);
-            })
+            firebase
+              .database()
+              .ref("users/" + user.uid)
+              .on("value", function(snapshot) {
+                // console.log(user.uid.firstName);
+                // console.log(user.uid.lastName);
+                $("#welcome-tag").text("Welcome, " + snapshot.val().firstName);
+              });
           }
-
         })
         .catch(function(error) {
           // Handle Errors here.
@@ -163,9 +168,9 @@ $(document).ready(function() {
           var errorMessage = error.message;
           // [START_EXCLUDE]
           if (errorCode === "auth/wrong-password") {
-            alert("Wrong password.");
+            // alert("Wrong password.");
           } else {
-            alert(errorMessage);
+            // alert(errorMessage);
           }
           console.log(error);
           // document.getElementById('quickstart-sign-in').disabled = false;
@@ -175,21 +180,31 @@ $(document).ready(function() {
     } else if (this.id === "signout-btn") {
       // alert("clicked");
       // if (user) {
-        firebase.auth().signOut().then(function() {
+      firebase
+        .auth()
+        .signOut()
+        .then(function() {
           $("#signout-btn").css("display", "none");
-          $("#display-login-btn").css("display", "inline");
+          $("#display-login-btn").css("display", "block");
           $("#welcome-tag").text("You have signed out successfully.");
+            $(".saved-words-row > tbody").empty();
           // Sign-out successful.
-        }).catch(function(error) {
+        })
+        .catch(function(error) {
           // An error happened.
         });
       // }
-        // alert("clicked");
-        // [START signout]
-        // firebase.auth().signOut();
-        // [END signout]
+      // alert("clicked");
+      // [START signout]
+      // firebase.auth().signOut();
+      // [END signout]
 
       // }
+    }
+    else if(this.id === "logo"){
+      $("#saved-words").css("display","none");
+      $("#front-page").css("display","block");
+
     }
   });
 });
@@ -203,6 +218,7 @@ window.onload = function() {
         "There was no anonymous session. Creating a new anonymous user."
       );
       // Sign the user in anonymously since accessing Storage requires the user to be authorized.
+      // document.cookie = "name=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
       firebase
         .auth()
         .signInAnonymously()
