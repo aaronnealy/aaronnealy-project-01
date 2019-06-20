@@ -9,17 +9,27 @@
     background-color:#0d0a0b;;
 }
 
+#saved-words-btn{
+float: left;
+}
+
+#saved-words{
+    display:none;
+}
 .nav-button{
     background-color: #72b01d;
     color:#F4F4F8;
     display: inline-block;
 }
 
+#logo{
+    border: none;
+}
 #signout-btn{
     display:none;
 }
 
-#main-container{
+.main-container{
     background-color: #72b01d;
     height: 500px;
 }

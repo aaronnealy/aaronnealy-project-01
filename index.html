@@ -1,84 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Project 1</title>
-    <link rel="stylesheet" type="text/css" href="assets/css/reset.css"/>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"/>
-    <link rel="stylesheet" href="assets/css/style.css"/>
-    <link href="https://fonts.googleapis.com/css?family=Archivo+Black&display=swap" rel="stylesheet"/>
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
-    
-    <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-database.js"></script>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Project 1</title>
+  <link rel="stylesheet" type="text/css" href="assets/css/reset.css" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link href="https://fonts.googleapis.com/css?family=Archivo+Black&display=swap" rel="stylesheet" />
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+  <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
 
-    <!-- Add Firebase products that you want to use -->
-    <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-firestore.js"></script>
-  </head>
-  <body>
-    <!-- Nav Bar -->
-    <nav class="navbar .nav-bar" id="nav-bar-color">
-        <a href = "index.html" class = "navbar-brand .nav-brand button imp-btn" id="logo">ARK Translation</a>
-        <!-- saved buttons -->
-        <a href="saved-words.html" type="button" class="btn nav-button" id="saved-words-btn button">
-          Saved Words
-        </a>
-     <!-- User Log-in -->
+  <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-database.js"></script>
+
+  <!-- Add Firebase products that you want to use -->
+  <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-firestore.js"></script>
+</head>
+
+<body>
+  <!-- Nav Bar -->
+  <nav class="navbar .nav-bar" id="nav-bar-color">
+    <button class="navbar-brand .nav-brand button imp-btn" id="logo">ARK Translation</button>
+    <!-- saved buttons -->
+    <button type="button" class="btn nav-button translators" id="saved-words-btn">
+      Saved Words
+    </button>
+    <!-- User Log-in -->
     <!-- Button trigger modal -->
-<button type="button" class="btn nav-button" data-toggle="modal" data-target="#exampleModalCenter" id="display-login-btn">
-    Log-in
-  </button>
-  <button type="button" class="btn nav-button imp-btn" id="signout-btn">
+    <button type="button" class="btn nav-button" data-toggle="modal" data-target="#exampleModalCenter"
+      id="display-login-btn">
+      Log-in
+    </button>
+    <button type="button" class="btn nav-button imp-btn" id="signout-btn">
       Sign-out
     </button>
-  <!-- Modal -->
-  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalCenterTitle">Log In</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-      <!-- Log-in Form -->
-        <div class="modal-body">
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+      aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalCenterTitle">Log In</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <!-- Log-in Form -->
+          <div class="modal-body">
             <form>
-                <div class="form-group">
-                  <label for="input-email">User Name</label>
-                  <input type="email" class="form-control" id="input-email" aria-describedby="emailHelp" placeholder="Enter username">
-                  <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-                </div>
-                <div class="form-group">
-                  <label for="input-password">Password</label>
-                  <input type="password" class="form-control" id="input-password" placeholder="Password">
-                </div>
-                <!-- <div class="form-group form-check"> -->
-                  <!-- <input type="checkbox" class="form-check-input" id="exampleCheck1"> -->
-                  <!-- <label class="form-check-label" for="exampleCheck1">Check me out</label> -->
-                <!-- </div> -->
-                <button type="submit" class="btn btn-success imp-btn" id="login-btn" data-dismiss="modal">Submit</button>
-              </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <div class="form-group">
+                <label for="input-email">User Name</label>
+                <input type="email" class="form-control" id="input-email" aria-describedby="emailHelp"
+                  placeholder="Enter username">
+                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
+                  else.</small>
+              </div>
+              <div class="form-group">
+                <label for="input-password">Password</label>
+                <input type="password" class="form-control" id="input-password" placeholder="Password">
+              </div>
+              <!-- <div class="form-group form-check"> -->
+              <!-- <input type="checkbox" class="form-check-input" id="exampleCheck1"> -->
+              <!-- <label class="form-check-label" for="exampleCheck1">Check me out</label> -->
+              <!-- </div> -->
+              <button type="submit" class="btn btn-success imp-btn" id="login-btn" data-dismiss="modal">Submit</button>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  
-  <!-- Create a new account -->
-  <button type="button" class="btn nav-button" data-toggle="modal" data-target="#exampleModal">
+
+    <!-- Create a new account -->
+    <button type="button" class="btn nav-button" data-toggle="modal" data-target="#exampleModal">
       Create An Account
     </button>
-    
+
     <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+      aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
@@ -88,23 +96,23 @@
             </button>
           </div>
           <div class="modal-body">
-              <form class="needs-validation" novalidate>
-                  <div class="form-row mb-3">
-                    <div class="col-md-5">
-                      <label for="first-name"></label>
-                      <input type="text" class="form-control" id="first-name" placeholder="First name" value="" required>
-                      <div class="valid-feedback">
-                        Looks good!
-                      </div>
-                    </div>
-                    <div class="col-md-5">
-                      <label for="last-name"></label>
-                      <input type="text" class="form-control" id="last-name" placeholder="Last name" value="" required>
-                      <div class="valid-feedback">
-                        Looks good!
-                      </div>
-                    </div>
-                    <!-- <div class="col-md-4 mb-3">
+            <form class="needs-validation" novalidate>
+              <div class="form-row mb-3">
+                <div class="col-md-5">
+                  <label for="first-name"></label>
+                  <input type="text" class="form-control" id="first-name" placeholder="First name" value="" required>
+                  <div class="valid-feedback">
+                    Looks good!
+                  </div>
+                </div>
+                <div class="col-md-5">
+                  <label for="last-name"></label>
+                  <input type="text" class="form-control" id="last-name" placeholder="Last name" value="" required>
+                  <div class="valid-feedback">
+                    Looks good!
+                  </div>
+                </div>
+                <!-- <div class="col-md-4 mb-3">
                       <label for="validationCustomUsername"></label>
                       <div class="input-group">
                         <div class="input-group-prepend">
@@ -117,40 +125,41 @@
                         <small id="emailHelp" class="form-text text-muted">This will be your username.</small>
                       </div>
                     </div> -->
-                  </div>
-                  <!-- <div class="form-row"> -->
-                    <div class="form-row mb-3">
-                      <div class="col-md-5">
-                          <label for="setup-email"></label>
-                          <div class="input-group">
-                            <div class="input-group-prepend">
-                              <span class="input-group-text" id="inputGroupPrepend">@</span>
-                            </div>
-                            <input type="email" class="form-control" id="setup-email" placeholder="Email" aria-describedby="inputGroupPrepend" required>
-                            <small id="emailHelpNew" class="form-text text-muted">This will be your username.</small>
-    
-                            <div class="invalid-feedback">
-                              Please enter a valid email.
-                            </div>
-                          </div>
-                      </div>
+              </div>
+              <!-- <div class="form-row"> -->
+              <div class="form-row mb-3">
+                <div class="col-md-5">
+                  <label for="setup-email"></label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="inputGroupPrepend">@</span>
+                    </div>
+                    <input type="email" class="form-control" id="setup-email" placeholder="Email"
+                      aria-describedby="inputGroupPrepend" required>
+                    <small id="emailHelpNew" class="form-text text-muted">This will be your username.</small>
 
-                      <div class="col-md-5">
-                          <label for="setup-password"></label>
-                          <div class="input-group">
-                              <!-- <div class="input-group-prepend">
+                    <div class="invalid-feedback">
+                      Please enter a valid email.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-5">
+                  <label for="setup-password"></label>
+                  <div class="input-group">
+                    <!-- <div class="input-group-prepend">
                                 <span class="input-group-text" id="inputGroupPrepend">@</span>
                               </div> -->
-                              <input type="password" class="form-control" id="setup-password" placeholder="Password">      
-                              <div class="invalid-feedback">
-                                Please enter a valid password.
-                              </div>
-                            </div>
-                      </div>
-                      
+                    <input type="password" class="form-control" id="setup-password" placeholder="Password">
+                    <div class="invalid-feedback">
+                      Please enter a valid password.
                     </div>
-                  <!-- </div> -->
-                  <!-- <div class="form-row">
+                  </div>
+                </div>
+
+              </div>
+              <!-- </div> -->
+              <!-- <div class="form-row">
                     <div class="col-md-6 mb-3">
                       <label for="validationCustom03">City</label>
                       <input type="text" class="form-control" id="validationCustom03" placeholder="City" required>
@@ -173,19 +182,20 @@
                       </div>
                     </div>
                   </div> -->
-                  <div class="form-group">
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
-                      <label class="form-check-label" for="invalidCheck">
-                        Agree to terms and conditions
-                      </label>
-                      <div class="invalid-feedback">
-                        You must agree before submitting.
-                      </div>
-                    </div>
+              <div class="form-group">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+                  <label class="form-check-label" for="invalidCheck">
+                    Agree to terms and conditions
+                  </label>
+                  <div class="invalid-feedback">
+                    You must agree before submitting.
                   </div>
-                  <button class="btn btn-primary imp-btn" type="submit" id="new-user-btn" data-dismiss="modal">Submit form</button>
-                </form>
+                </div>
+              </div>
+              <button class="btn btn-primary imp-btn" type="submit" id="new-user-btn" data-dismiss="modal">Submit
+                form</button>
+            </form>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -195,74 +205,97 @@
       </div>
     </div>
 
-  
-  
-<!-- search bar -->
-        <!-- <form class="form-inline "> -->
-          <!-- <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" /> -->
-          <button class="btn imp-btn" type="submit" id="search-bar">Random</button>
-        <!-- </form> -->
-        
-        
+
+
+    <!-- search bar -->
+    <!-- <form class="form-inline "> -->
+    <!-- <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" /> -->
+    <button class="btn imp-btn" type="submit" id="search-bar">Random</button>
+    <!-- </form> -->
+
+
     </div>
-      </nav>
-    <br /><br />
+  </nav>
+  <br /><br />
 
-    <!-- Wiki post will go here -->
-    <p class="text-center m-0 p-0" id="welcome-tag">Welcome Guest!</p>
+  <!-- Wiki post will go here -->
+  <p class="text-center m-0 p-0" id="welcome-tag">Welcome Guest!</p>
 
-    <div class="container" id="main-container">
-      <div class="row justify-content-md-center">
+  <div class="container main-container" id="front-page">
+    <div class="row justify-content-md-center">
 
-        <div class="col-sm-12">
-          
-          <div
-            class="btn-group btnGroup translators-lg"
-            role="group"
-            aria-label="Button group with nested dropdown"
-            id="btn-group"
-          >
-            <button type="button" class="btn translators " data-lang="english" id="btnEng">English</button>
-            <button type="button" class="btn translators" id="btnGrm">German</button>
-            <button type="button" class="btn translators" id="btnSpn">Spanish</button>
-          </div>
-          <div class="row">
-            <div class="col-8 col-sm-6">
-              <div class="card card-wrapper">
-                <h5 class="card-header header" id="wiki-header">Wiki Text</h5>
-                <div class="card-body">
-                  <p class="card-title wiki-text">
-                      I was born in an empty sea, My tears created oceans
-                      Producing tsunami waves with emotions
-                      Patrolling the open seas of an unknown galaxy
-                      I was floating in front of who I am physically
-                      Spiritually paralyzing mind body and soul
-                      It gives me energy when I'm lyrically exercising
-                      I gotta spit 'til the story is told in a dream by celestial bodies
-                      Follow me baby
-                  </p>
-                </div>
+      <div class="col-sm-12">
+
+        <div class="btn-group btnGroup translators-lg" role="group" aria-label="Button group with nested dropdown"
+          id="btn-group">
+          <button type="button" class="btn translators " data-lang="english" id="btnEng">English</button>
+          <button type="button" class="btn translators" id="btnGrm">German</button>
+          <button type="button" class="btn translators" id="btnSpn">Spanish</button>
+        </div>
+        <div class="row">
+          <div class="col-8 col-sm-6">
+            <div class="card card-wrapper">
+              <h5 class="card-header header" id="wiki-header">Wiki Text</h5>
+              <div class="card-body">
+                <p class="card-title wiki-text">
+                  I was born in an empty sea, My tears created oceans
+                  Producing tsunami waves with emotions
+                  Patrolling the open seas of an unknown galaxy
+                  I was floating in front of who I am physically
+                  Spiritually paralyzing mind body and soul
+                  It gives me energy when I'm lyrically exercising
+                  I gotta spit 'til the story is told in a dream by celestial bodies
+                  Follow me baby
+                </p>
               </div>
             </div>
-            <div class="col-8 col-sm-6">
-                <div
-                class="btn-group btnGroup translators-sm"
-                role="group"
-                aria-label="Button group with nested dropdown"
-                id="btn-group"
-              >
-                <button type="button" class="btn translators " data-lang="english" id="btnEngSm">English</button>
-                <button type="button" class="btn translators " data-lang="german" id="btnGrmSm">German</button>
-                <button type="button" class="btn translators " data-lang="spanish" id="btnSpnSm">Spanish</button>
-    
+          </div>
+          <div class="col-8 col-sm-6">
+            <div class="btn-group btnGroup translators-sm" role="group" aria-label="Button group with nested dropdown"
+              id="btn-group">
+              <button type="button" class="btn translators " data-lang="english" id="btnEngSm">English</button>
+              <button type="button" class="btn translators " data-lang="german" id="btnGrmSm">German</button>
+              <button type="button" class="btn translators " data-lang="spanish" id="btnSpnSm">Spanish</button>
+
+            </div>
+            <div class="card card-wrapper">
+              <h5 class="card-header header" id="trans-header">Definition</h5>
+              <div class="card-body">
+                <p class="card-title trans-text">Translation Goes Here</p>
               </div>
-              <div class="card card-wrapper">
-                <h5 class="card-header header" id="trans-header">Definition</h5>
-                <div class="card-body">
-                  <p class="card-title trans-text">Translation Goes Here</p>
-                </div>
 
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container" id="saved-words">
+      <div class="row justify-content-md-center">
+        <div class="container">
+          <h2>Saved Words</h2>
 
+          <table class="table saved-words-row">
+            <thead>
+              <tr>
+                <!-- The scope attribute specifies that this is a header for a column -->
+                <th scope="col">Word</th>
+                <!-- <th scope="col">Translation</th> -->
+                <th scope="col">Definition</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- <tr> -->
+                <!-- <td>Hello</td> -->
+                <!-- <td>Hola</td> -->
+                <!-- <td>used to express a greeting</td> -->
+              <!-- </tr> -->
+              <!-- Insert additional movie rows here -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
 
   <script src="./assets/javascript/onclick.js"></script>
   <script src="./assets/javascript/definition.js"></script>
