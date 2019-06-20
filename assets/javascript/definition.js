@@ -23,10 +23,7 @@ $(document).ready(function() {
   //     saveWord($(this).html());console.log(getMeaning("apple"));
 
   //   });
-  $("div span").on("click", function(e) {
-      console.log($(this).html());
-    saveWord($(this).html());
-  });
+
   //   dictionary buttons
   $("button.translators").on("click", function() {
     if (this.id === "btnEng") {
@@ -68,13 +65,14 @@ $(document).ready(function() {
     $.ajax({
       url:
         "https://quotesondesign.com/wp-json/posts?filter[orderby]=rand&filter[posts_per_page]=1",
-      crossDomain: true
+        cache: false
+    //   crossDomain: true
     }).then(function(response) {
     //   console.log(response);
       // console.log("daves dumb guess???      " + response.content)
       // console.log("1 : " + response.Array[0].content);
       // console.log('2: ' + response.data[0].content);
-      console.log("paul pilfers poodles playfully:   " + response[0].content);
+    //   console.log("paul pilfers poodles playfully:   " + response[0].content);
 
       $(".wiki-text").html(response[0].content);
       getWord();
@@ -163,6 +161,10 @@ function getWord() {
       $(this).css("background-color", "");
     }
   );
+  $("div span").on("click", function(e) {
+    console.log($(this).html());
+  saveWord($(this).html());
+});
 }
 function getMeaningEsp(word) {
   var meaning = "";
