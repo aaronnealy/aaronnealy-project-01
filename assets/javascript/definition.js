@@ -68,7 +68,8 @@ $(document).ready(function() {
     $.ajax({
       url:
         "https://quotesondesign.com/wp-json/posts?filter[orderby]=rand&filter[posts_per_page]=1",
-      crossDomain: true
+        cache: false
+    //   crossDomain: true
     }).then(function(response) {
     //   console.log(response);
       // console.log("daves dumb guess???      " + response.content)
